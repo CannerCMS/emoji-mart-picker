@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart-picker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "emoji picker based on emoji-mart",
   "homepage": "",
   "author": {
@@ -56,7 +56,7 @@
     "lint": "eslint src test docs",
     "clean": "rimraf lib dist",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build": "npm run build:commonjs",
+    "build": "npm run build:commonjs && cp ./src/*.css ./lib",
     "prepublish": "npm run clean && npm run check:src && npm run build",
     "check:src": "npm run lint",
     "test": "cross-env BABEL_ENV=test karma start --single-run",
