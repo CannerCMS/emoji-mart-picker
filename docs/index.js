@@ -8,7 +8,9 @@ function onChange(emoji) {
 }
 
 ReactDOM.render(
-  <EmojiMartPicker onChange={onChange}>
-    <button>click me</button>
-  </EmojiMartPicker>
+  <div style={{margin: 100}}>
+    <EmojiMartPicker onChange={onChange}>
+      <button>click me</button>
+    </EmojiMartPicker>
+  </div>
 , document.getElementById('root'));

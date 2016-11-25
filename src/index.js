@@ -50,7 +50,8 @@ export default class EmojiMartPicker extends Component {
     set: 'apple',
     placement: 'topLeft',
     onOpen: arg => arg,
-    onClose: arg => arg
+    onClose: arg => arg,
+    children: <span className="emoji-mart-picker-trigger"/>
   };
 
   static propTypes = {
@@ -73,7 +74,7 @@ export default class EmojiMartPicker extends Component {
     ]),
     prefixCls: PropTypes.string,
     getPopupContainer: PropTypes.func,
-    children: PropTypes.any,
+    children: PropTypes.node.isRequired,
     popupAnimation: PropTypes.any,
     transitionName: PropTypes.string,
     disabled: PropTypes.bool

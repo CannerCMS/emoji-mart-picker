@@ -1,5 +1,5 @@
 const autoAdjustOverflow = {
-  adjustX: 1,
+  adjustX: 0,
   adjustY: 1
 };
 
