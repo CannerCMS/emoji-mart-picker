@@ -1,5 +1,5 @@
 # emoji-mart-picker [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> emoji picker based on emoji-mart
+> emoji picker based on emoji-mart (https://github.com/missive/emoji-mart/)
 
 ## Installation
 
