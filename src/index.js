@@ -1,6 +1,6 @@
 /* eslint-disable require-jsdoc */
 import React, {Component, PropTypes} from 'react';
-import {Picker as EmojiPicker} from 'emoji-mart';
+import {Picker as EmojiPicker} from '@canner/emoji-mart';
 import Trigger from 'rc-trigger';
 import placements from './placements';
 
