@@ -127,22 +127,20 @@ export default class EmojiMartPicker extends Component {
     const {color, emoji, emojiSize, skin, style, title,
       perLine, i18n, set, sheetSize} = this.props;
     return (
-      <div style={{zIndex: 10000}}>
-        <EmojiPicker
-          ref={this.savePickerPanelRef}
-          color={color}
-          emoji={emoji}
-          emojiSize={emojiSize}
-          perLine={perLine}
-          i18n={i18n}
-          set={set}
-          sheetSize={sheetSize}
-          skin={skin}
-          style={style}
-          title={title}
-          onClick={this.onChange}
-        />
-      </div>
+      <EmojiPicker
+        ref={this.savePickerPanelRef}
+        color={color}
+        emoji={emoji}
+        emojiSize={emojiSize}
+        perLine={perLine}
+        i18n={i18n}
+        set={set}
+        sheetSize={sheetSize}
+        skin={skin}
+        style={style}
+        title={title}
+        onClick={this.onChange}
+      />
     );
   }
 
