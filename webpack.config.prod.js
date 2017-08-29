@@ -14,7 +14,7 @@ module.exports = {
     'react-dom': "ReactDOM"
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -35,12 +35,12 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
         test: /\.css$/,
-        loader: "style!css"
+        loader: "style-loader!css-loader"
       }
     ]
   }
