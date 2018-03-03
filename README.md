@@ -1,4 +1,6 @@
 # emoji-mart-picker [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Canner/emoji-mart-picker.svg)](https://greenkeeper.io/)
 > emoji picker based on emoji-mart (https://github.com/missive/emoji-mart/)
 
 ## Installation
