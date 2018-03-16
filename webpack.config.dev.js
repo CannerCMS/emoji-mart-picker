@@ -1,12 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  devtool: 'eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './docs/index.js'
-  ],
+  entry: './docs/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -15,25 +10,26 @@ module.exports = {
   resolve: {
     extensions: ['.js']
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify("development")
-      }
-    })
-  ],
+  resolveLoader: {
+    moduleExtensions: ["-loader"]
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader'],
+        use: 'babel',
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
       }
     ]
   }

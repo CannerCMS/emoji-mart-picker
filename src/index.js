@@ -1,10 +1,10 @@
-/* eslint-disable require-jsdoc */
-import React, {Component, PropTypes} from 'react';
-import {Picker as EmojiPicker} from '@canner/emoji-mart';
+// @flow
+import * as React from 'react';
+import {Picker as EmojiPicker} from 'emoji-mart';
 import Trigger from 'rc-trigger';
 import placements from './placements';
 
-import './emoji-mart.css';
+import 'emoji-mart/css/emoji-mart.css'
 
 function prevent(e) {
   e.preventDefault();
@@ -12,11 +12,37 @@ function prevent(e) {
 
 function refFn(field, component) {
   // trigger instance change to children
-  this[field] = component;
+  (this: any)[field] = component;
 }
 
-export default class EmojiMartPicker extends Component {
-  constructor(props) {
+type Props = {
+  emojiSize: number,
+  perLine: number,
+  skin: number,
+  set: string,
+  onChange: Function,
+  onOpen: Function,
+  onClose: Function,
+  color: string,
+  emoji: string,
+  i18n: Object,
+  sheetSize: number,
+  popupAlign: Object,
+  title: string,
+  style: {[string]: any},
+  placement: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight',
+  prefixCls: string,
+  getPopupContainer: Function,
+  children: React.Node,
+  popupAnimation: any,
+  transitionName: string,
+  disabled: boolean
+}
+
+export default class EmojiMartPicker extends React.Component<Props, {open: boolean}> {
+  savePickerPanelRef: ?EmojiMartPicker
+
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -36,11 +62,11 @@ export default class EmojiMartPicker extends Component {
     ];
 
     events.forEach(e => {
-      this[e] = this[e].bind(this);
+      (this: any)[e] = (this: any)[e].bind(this);
     });
 
-    this.savePickerPanelRef = refFn.bind(this, 'pickerPanelInstance');
-    this.saveTriggerRef = refFn.bind(this, 'triggerInstance');
+    (this: any).savePickerPanelRef = refFn.bind(this, 'pickerPanelInstance');
+    (this: any).saveTriggerRef = refFn.bind(this, 'triggerInstance');
   }
 
   static defaultProps = {
@@ -49,56 +75,30 @@ export default class EmojiMartPicker extends Component {
     skin: 1,
     set: 'apple',
     placement: 'topLeft',
-    onOpen: arg => arg,
-    onClose: arg => arg,
+    onOpen: (arg: Object) => arg,
+    onClose: (arg: Object) => arg,
     children: <span className="emoji-mart-picker-trigger"/>
   };
 
-  static propTypes = {
-    emojiSize: PropTypes.number,
-    perLine: PropTypes.number,
-    skin: PropTypes.number,
-    set: PropTypes.string,
-    onChange: PropTypes.func,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    color: PropTypes.string,
-    emoji: PropTypes.string,
-    i18n: PropTypes.object,
-    sheetSize: PropTypes.number,
-    popupAlign: PropTypes.object,
-    title: PropTypes.string,
-    style: PropTypes.object,
-    placement: PropTypes.oneOf([
-      'topLeft', 'topRight', 'bottomLeft', 'bottomRight'
-    ]),
-    prefixCls: PropTypes.string,
-    getPopupContainer: PropTypes.func,
-    children: PropTypes.node.isRequired,
-    popupAnimation: PropTypes.any,
-    transitionName: PropTypes.string,
-    disabled: PropTypes.bool
-  };
-
-  onTriggerClick(e) {
+  onTriggerClick(e: Event) {
     e.preventDefault();
     this.setState({
       open: !this.state.open
     });
   }
 
-  onChange(emoji) {
+  onChange(emoji: Object) {
     this.props.onChange(emoji);
     this.setState({
       open: false
     });
   }
 
-  onVisibleChange(open) {
+  onVisibleChange(open: boolean) {
     this.setOpen(open);
   }
 
-  setOpen(open, callback) {
+  setOpen(open: boolean, callback?: Function) {
     const {onOpen, onClose} = this.props;
     if (this.state.open !== open) {
       this.setState({
@@ -120,6 +120,7 @@ export default class EmojiMartPicker extends Component {
   }
 
   getTriggerDOMNode() {
+    // $FlowFixMe
     return this.triggerInstance;
   }
 
@@ -128,7 +129,7 @@ export default class EmojiMartPicker extends Component {
       perLine, i18n, set, sheetSize} = this.props;
     return (
       <EmojiPicker
-        ref={this.savePickerPanelRef}
+        ref={node => this.savePickerPanelRef = node}
         color={color}
         emoji={emoji}
         emojiSize={emojiSize}
@@ -144,11 +145,11 @@ export default class EmojiMartPicker extends Component {
     );
   }
 
-  open(callback) {
+  open(callback: Function) {
     this.setOpen(true, callback);
   }
 
-  close(callback) {
+  close(callback: Function) {
     this.setOpen(false, callback);
   }
 
@@ -163,11 +164,13 @@ export default class EmojiMartPicker extends Component {
     let children = props.children;
 
     if (children) {
+      // $FlowFixMe
       children = React.cloneElement(children, {
-        ref: this.saveTriggerRef,
-        unselectable: true,
+        // $FlowFixMe
+        ref: node => this.saveTriggerRef = node,
         onClick: this.onTriggerClick,
-        onMouseDown: prevent
+        onMouseDown: prevent,
+        className: classes
       });
     }
 
