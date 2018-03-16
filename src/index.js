@@ -23,20 +23,20 @@ type Props = {
   onChange: Function,
   onOpen: Function,
   onClose: Function,
-  color: string,
-  emoji: string,
-  i18n: Object,
-  sheetSize: number,
-  popupAlign: Object,
-  title: string,
-  style: {[string]: any},
   placement: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight',
-  prefixCls: string,
-  getPopupContainer: Function,
   children: React.Node,
-  popupAnimation: any,
-  transitionName: string,
-  disabled: boolean
+  color?: string,
+  emoji?: string,
+  i18n?: Object,
+  sheetSize?: number,
+  popupAlign?: Object,
+  title?: string,
+  style?: {[string]: any},
+  prefixCls?: string,
+  getPopupContainer?: Function,
+  popupAnimation?: any,
+  transitionName?: string,
+  disabled?: boolean
 }
 
 export default class EmojiMartPicker extends React.Component<Props, {open: boolean}> {
