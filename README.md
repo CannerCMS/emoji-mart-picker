@@ -9,6 +9,8 @@ $ npm install --save emoji-mart-picker
 
 ## Usage
 
+Put the React component that you want to trigger the picker to open in `EmojiMartPicker`'s children.  `EmojiMartPicker` will automatically open when children is `onClick`.
+
 ```js
 var emojiMartPicker = require('emoji-mart-picker');
 
@@ -26,7 +28,7 @@ ReactDOM.render(
 ## Start example server
 
 ```
-node devServer.js
+npm start
 ```
 
 ## License
