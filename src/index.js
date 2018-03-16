@@ -25,6 +25,7 @@ type Props = {
   onClose: Function,
   placement: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight',
   children: React.Node,
+  prefixCls: string,
   color?: string,
   emoji?: string,
   i18n?: Object,
@@ -32,7 +33,6 @@ type Props = {
   popupAlign?: Object,
   title?: string,
   style?: {[string]: any},
-  prefixCls?: string,
   getPopupContainer?: Function,
   popupAnimation?: any,
   transitionName?: string,
@@ -75,6 +75,7 @@ export default class EmojiMartPicker extends React.Component<Props, {open: boole
     skin: 1,
     set: 'apple',
     placement: 'topLeft',
+    prefixCls: 'rc-trigger-popup',
     onOpen: (arg: Object) => arg,
     onClose: (arg: Object) => arg,
     children: <span className="emoji-mart-picker-trigger"/>
