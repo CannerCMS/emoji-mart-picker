@@ -157,10 +157,6 @@ export default class EmojiMartPicker extends React.Component<Props, {open: boole
   render() {
     const props = this.props;
     const state = this.state;
-    const classes = [props.prefixCls + '-wrap'];
-    if (state.open) {
-      classes.push(props.prefixCls + '-open');
-    }
 
     let children = props.children;
 
@@ -170,8 +166,7 @@ export default class EmojiMartPicker extends React.Component<Props, {open: boole
         // $FlowFixMe
         ref: node => this.saveTriggerRef = node,
         onClick: this.onTriggerClick,
-        onMouseDown: prevent,
-        className: classes
+        onMouseDown: prevent
       });
     }
 
