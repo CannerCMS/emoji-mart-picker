@@ -36,7 +36,8 @@ type Props = {
   getPopupContainer?: Function,
   popupAnimation?: any,
   transitionName?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  native: boolean
 }
 
 export default class EmojiMartPicker extends React.Component<Props, {open: boolean}> {
@@ -70,6 +71,7 @@ export default class EmojiMartPicker extends React.Component<Props, {open: boole
   }
 
   static defaultProps = {
+    native: false,
     emojiSize: 24,
     perLine: 8,
     skin: 1,
@@ -127,7 +129,7 @@ export default class EmojiMartPicker extends React.Component<Props, {open: boole
 
   getPickerElement() {
     const {color, emoji, emojiSize, skin, style, title,
-      perLine, i18n, set, sheetSize} = this.props;
+      perLine, i18n, set, sheetSize, ...other} = this.props;
     return (
       <EmojiPicker
         ref={node => this.savePickerPanelRef = node}
@@ -142,6 +144,7 @@ export default class EmojiMartPicker extends React.Component<Props, {open: boole
         style={style}
         title={title}
         onClick={this.onChange}
+        {...other}
       />
     );
   }
